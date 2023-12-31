@@ -1,4 +1,3 @@
-
 # ========================import packages=========================================================
 import streamlit as st
 import numpy as np
@@ -41,15 +40,31 @@ def predict_emotion(input_text):
 
 # ==================================creating app====================================
 # App
-st.title("Six Human Emotions Detection App")
-st.write("=================================================")
-st.write("['Joy,'Fear','Anger','Love','Sadness','Surprise']")
-st.write("=================================================")
+st.title("Human Emotions Detection App")
+st.text("")
+st.text("")
+st.text("")
+# st.write("=================================================")
+# st.write("['Joy,'Fear','Anger','Love','Sadness','Surprise']")
+# st.write("=================================================")
 
-# taking input from user
-user_input = st.text_input("Enter your text here:")
 
-if st.button("Predict"):
-    predicted_emotion, label = predict_emotion(user_input)
-    st.write("Predicted Emotion:", predicted_emotion)
-    # st.write("Probability:", label)
+var = st.sidebar.radio("Navigation", ["Home", "About"])
+if var == "Home":
+    # taking input from user
+    user_input = st.text_input("Enter your text here:")
+    if st.button("Predict") and user_input:
+        predicted_emotion, label = predict_emotion(user_input)
+        st.text("")
+        st.text("")
+        st.write(
+                    "Emotion of input sentence appears to be :",
+                    predicted_emotion.upper(),
+                )
+    # else:
+    #    st.warning("Please enter something...")    
+elif var == "About":
+    st.subheader(
+        "Hi there, this is a human emotion detection app. This app can understand and classify six basic human emotions viz. `Anger`, `Joy`, `Surprise`, `Sadness`, `Fear`, `Love`  with the help of `Logistic Regression`."
+    )
+# st.write("Probability:", label)
